@@ -3,22 +3,23 @@ package funcionalidades;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class ReproduzirMusica { 
-    private List<String> colecaoDeMusica = Arrays.asList("Fancy", "Fell Special", "Likey", "Piloto");
+    private static Scanner scanner = new Scanner(System.in);
+
+
+    private static List<String> colecaoDeMusica = Arrays.asList("Fancy", "Fell Special", "Likey", "Piloto");
 
     public ReproduzirMusica(){
-        // System.out.println("Escolhar o que fazer no app de musica: ");
-        // System.out.println("1 - tocar música.");
-        // System.out.println("2 - pausar.");
-        // System.out.println("3 - Selecionar música.");
+        acoesDoApp();
     }
 
 
-    public void tocar(){
+    public static void tocar(){
         Consumer<String> tocarMusicas = musica -> {
             System.out.println("Tocando: " + musica);
             try {
@@ -29,7 +30,7 @@ public class ReproduzirMusica {
         colecaoDeMusica.stream().forEach(tocarMusicas);
     };
 
-    public void pausar(){
+    public static void pausar(){
         System.out.println("Pausando as músicas...");
 
         // thr1 = Thread.currentThread();
@@ -41,9 +42,40 @@ public class ReproduzirMusica {
         // thr1.interrupt();   
     };
 
-    public void selecionarMusica(){
+    public static void selecionarMusica(){
         AtomicInteger index = new AtomicInteger();
         Arrays.stream(colecaoDeMusica.toArray()).map(str -> index.getAndIncrement() + 1 + " - " + str).forEach(System.out::println);
         
+        int musicaEscolhida = scanner.nextInt();
+
+        System.out.println("Tocando " + musicaEscolhida);
     };
+
+    public static void acoesDoApp(){
+        String[] opcoesMusica = {"tocar música.", "pausar.", "Selecionar música.", "Sair do app Reproduzir Música"};
+
+        int escolhaDaMusica = imprimirOpcoes(opcoesMusica);
+
+        while (escolhaDaMusica != 4) {
+            if(escolhaDaMusica == 1){
+                tocar();
+            } else if(escolhaDaMusica == 2){
+                pausar();
+            } else if(escolhaDaMusica == 3){
+                selecionarMusica();
+            }
+
+            escolhaDaMusica = imprimirOpcoes(opcoesMusica);
+        }
+    }
+
+    public static int imprimirOpcoes(String[] array){
+
+        AtomicInteger index = new AtomicInteger();
+        Arrays.stream(array).map(str -> index.getAndIncrement() + 1 + " - " + str).forEach(System.out::println);
+
+        int escolha = scanner.nextInt();
+
+        return escolha;
+    }
 }
