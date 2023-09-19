@@ -1,4 +1,5 @@
 import funcionalidades.AparelhoTelefonico;
+import funcionalidades.NavegadorInternet;
 import funcionalidades.ReproduzirMusica;
 
 import util.Util;
@@ -24,6 +25,7 @@ public class Dispositivo {
             } else if(escolha == 2){
                 new AparelhoTelefonico();
             } else if(escolha == 3){
+                new NavegadorInternet();
             }
 
 
