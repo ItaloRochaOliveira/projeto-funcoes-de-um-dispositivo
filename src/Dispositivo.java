@@ -1,8 +1,7 @@
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
-
+import funcionalidades.AparelhoTelefonico;
 import funcionalidades.ReproduzirMusica;
+
+import util.Util;
 
 public class Dispositivo {
     public Dispositivo() throws InterruptedException {
@@ -17,37 +16,19 @@ public class Dispositivo {
 
         System.out.println("Escolha o que deseja fazer com o aparelho:");
 
-        int escolha = imprimirOpcoes(opcoes);
+        int escolha = Util.imprimirOpcoes(opcoes);
 
         while (escolha != 4) {
             if(escolha == 1){
-                ReproduzirMusica appMusica = new ReproduzirMusica();
+                new ReproduzirMusica();
+            } else if(escolha == 2){
+                new AparelhoTelefonico();
+            } else if(escolha == 3){
             }
 
 
-            escolha = imprimirOpcoes(opcoes);
+            escolha = Util.imprimirOpcoes(opcoes);
         }
-
-
         
-        // int opcoes = scanner.nextInt();
-
-        // if(opcoes == 1){
-        //     appMusica.tocar();
-        // }
-
-        // appMusica.selecionarMusica();
-        
-    }
-
-    public static int imprimirOpcoes(String[] array){
-        Scanner scanner = new Scanner(System.in);
-
-        AtomicInteger index = new AtomicInteger();
-        Arrays.stream(array).map(str -> index.getAndIncrement() + 1 + " - " + str).forEach(System.out::println);
-
-        int escolha = scanner.nextInt();
-
-        return escolha;
     }
 }
