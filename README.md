@@ -11,6 +11,8 @@ Os conteúdos principais a serem explorados são:
 - Collections em Java.
 - Stram API.
 
+## Exemplo com o "app" de música:
+
 ### Entrada do dispositivo:
 
 | <img src="src/assents/dispositivo.png" width=100%><br><sub>inicialização do dispositivo</sub> |
